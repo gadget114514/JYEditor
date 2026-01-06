@@ -1,0 +1,3 @@
+D:/ws/JYEditor/build/CMakeFiles/JYEditor.dir
+D:/ws/JYEditor/build/CMakeFiles/ALL_BUILD.dir
+D:/ws/JYEditor/build/CMakeFiles/ZERO_CHECK.dir

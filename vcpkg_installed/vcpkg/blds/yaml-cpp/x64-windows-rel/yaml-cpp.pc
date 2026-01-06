@@ -1,0 +1,11 @@
+prefix=D:/ws/JYEditor/vcpkg_installed/vcpkg/pkgs/yaml-cpp_x64-windows
+exec_prefix=${prefix}
+includedir=D:/ws/JYEditor/vcpkg_installed/vcpkg/pkgs/yaml-cpp_x64-windows/include
+libdir=D:/ws/JYEditor/vcpkg_installed/vcpkg/pkgs/yaml-cpp_x64-windows/lib
+
+Name: Yaml-cpp
+Description: A YAML parser and emitter for C++
+Version: 0.8.0
+Requires:
+Libs: -L${libdir} -lyaml-cpp
+Cflags: -I${includedir}

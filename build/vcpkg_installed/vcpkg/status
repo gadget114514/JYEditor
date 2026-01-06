@@ -1,0 +1,34 @@
+Package: vcpkg-cmake-config
+Version: 2024-05-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: e34df5fa2b6e730977d1009b999a7543403283bfa2fc036b3aa5dcc8d7c59a7c
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2024-04-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f71e3e5cb536d59eef44db064c6c620d2ac903b436ac206197b5c59a301b90be
+Status: install ok installed
+
+Package: nlohmann-json
+Version: 3.12.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f1c46bf3042e2f244230e253f8380f9f086658a2b64ba549952b76bc3970719b
+Description: JSON for Modern C++
+Status: install ok installed
+
+Package: yaml-cpp
+Version: 0.8.0
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 8f8ac67b91154fd325dfcd8b230d508789f6aec4b2b2476a97a4f10ca27819e9
+Description: yaml-cpp is a YAML parser and emitter in C++ matching the YAML 1.2 spec.
+Status: install ok installed
+
