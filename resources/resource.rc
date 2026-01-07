@@ -2,3 +2,4 @@
 #include "resource.h"
 
 // Icon resources etc can be added here
+IDI_APP_ICON ICON "app.ico"

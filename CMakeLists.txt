@@ -18,6 +18,10 @@ target_link_libraries(JYEditor PRIVATE comctl32 shlwapi)
 
 target_compile_definitions(JYEditor PRIVATE UNICODE _UNICODE)
 
+if(MSVC)
+    target_compile_options(JYEditor PRIVATE /utf-8)
+endif()
+
 
 # If using vcpkg, these find_packages will work if installed
 find_package(nlohmann_json CONFIG REQUIRED)

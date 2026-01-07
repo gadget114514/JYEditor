@@ -4,7 +4,6 @@
 #include <vector>
 #include <windows.h>
 
-
 std::wstring FileUtils::ReadFileUtf8(const std::wstring &path) {
   HANDLE hFile = CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL,
                             OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -35,37 +34,27 @@ std::wstring FileUtils::ReadFileUtf8(const std::wstring &path) {
   MultiByteToWideChar(CP_UTF8, 0, buffer.data(), -1, wBuffer.data(), wlen);
 
   std::wstring result = wBuffer.data();
-  // Normalize line endings to CRLF for Edit control (or keep as is? Edit
-  // control needs CRLF usually to display correctly) Actually, standard Edit
-  // control expects CRLF. Windows 10+ Edit control might handle LF, but let's
-  // normalize to standard internal (CRLF) for editing. However, we want to
-  // PRESERVE or SELECT the mode. For now, let's just return raw. But the
-  // standard Edit control needs \r\n to break lines visually in some versions.
+  return NormalizeToCrlf(result);
+}
 
-  // A simple find replace for visual display:
-  // This is a naive implementation; for a real editor, we'd handle this better.
+std::wstring FileUtils::NormalizeToCrlf(const std::wstring &text) {
   std::wstring displayResult;
-  displayResult.reserve(result.size());
-  for (size_t i = 0; i < result.size(); ++i) {
-    if (result[i] == L'\r') {
-      if (i + 1 < result.size() && result[i + 1] == L'\n') {
+  displayResult.reserve(text.size());
+  for (size_t i = 0; i < text.size(); ++i) {
+    if (text[i] == L'\r') {
+      if (i + 1 < text.size() && text[i + 1] == L'\n') {
         displayResult += L"\r\n"; // Keep CRLF
         i++;
       } else {
         displayResult += L"\r\n"; // Treat raw CR as newline
       }
-    } else if (result[i] == L'\n') {
+    } else if (text[i] == L'\n') {
       displayResult += L"\r\n"; // Treat raw LF as newline
     } else {
-      displayResult += result[i];
+      displayResult += text[i];
     }
   }
-
-  return result;
-  // Wait, if I normalize everything to CRLF for display, I might lose the
-  // original format info. The user wants to "select the end of file code". So
-  // if the file is LF, we probably display it normalized, but remember "LF" was
-  // the format. Auto-detection logic should go here.
+  return displayResult;
 }
 
 bool FileUtils::WriteFileUtf8(const std::wstring &path,
